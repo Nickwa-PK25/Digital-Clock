@@ -35,6 +35,7 @@ function getTime() {
   let h = date.getHours();
   let s = date.getSeconds();
   let m = date.getMinutes();
+  let ampm = h >= 12 ? 'PM' : 'AM';
   h = h % 12 || 12; // Convert hours to 12-hour format
 
   

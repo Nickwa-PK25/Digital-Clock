@@ -91,12 +91,12 @@ body, html {
 
 /* Styles for the hour and minute display */
 .hour {
-  font-size: 70px; /* Set the font size for the hour display */
+  font-size: 40px; /* Set the font size for the hour display */
   font-weight: 900; /* Set the font weight */
   position: absolute; /* Position absolutely within the clock container */
-  left: 50%; /* Center horizontally */
+  left:50%; /* Center horizontally */
   top: 50%; /* Center vertically */
-  transform: translate(-50%, -50%); /* Center the element */
+  transform: translate(-60%, -40%); /* Center the element */
 }
 
 .minute {
@@ -125,12 +125,12 @@ body, html {
 
 /* Animation for hour numbers */
 .hour {
-    font-size: 70px;
+    font-size: 40px;
     font-weight: 900;
     position: absolute;
-    left: 50%;
+    left:50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-60%, -40%);
   }
   
   /* Animation for minute numbers */
