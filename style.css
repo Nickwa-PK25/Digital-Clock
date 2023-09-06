@@ -1,0 +1,188 @@
+
+/* Import the Comfortaa font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
+
+/* Apply box-sizing to all elements and set some basic styles for the body and HTML */
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body, html {
+  background: #171616; /* Set background color to black */
+  margin: 0; /* Remove default margin */
+  height: 100vh; /* Make the body and HTML cover the viewport height */
+  color: #fff; /* Set text color to white */
+  font-family: "Comfortaa", cursive; /* Use the Comfortaa font */
+}
+
+/* Styles for the clock container */
+.clock {
+  --clock-size: 360px; /* Define a custom property for the clock size */
+  width: var(--clock-size);
+  height: var(--clock-size);
+  position: fixed; /* Fix the clock to the viewport */
+  inset: 0; /* Position at the edges of the viewport */
+  margin: auto; /* Center the clock horizontally and vertically */
+  border-radius: 50%; /* Make the clock a circle */
+}
+
+/* Styles for the clock spikes */
+.spike {
+  position: absolute; /* Position the spikes absolutely within the clock container */
+  width: 8px;
+  height: 1px;
+  background: #fff9; /* Set spike color */
+  line-height: 20px;
+  transform-origin: 50%; /* Set the rotation origin to the center of the spike */
+  z-index: 5; /* Control the stacking order */
+  inset: 0; /* Position at the edges of the clock container */
+  margin: auto; /* Center the spikes horizontally and vertically */
+  font-style: normal;
+  transform: rotate(var(--rotate)) translateX(var(--dail-size)); /* Rotate the spike and position it */
+}
+
+/* Add a box-shadow to every 5th spike for better visibility */
+.spike:nth-child(5n+1) {
+  box-shadow: -7px 0 #fff9;
+}
+
+/* Styles for the spike labels */
+.spike:nth-child(5n+1):after {
+  content: attr(data-i); /* Display the value of the 'data-i' attribute */
+  position: absolute;
+  right: 22px; /* Position the label to the right of the spike */
+  top: -10px; /* Adjust the vertical position of the label */
+  transition: 1s linear; /* Add a transition effect for smooth movement */
+  transform: rotate(calc( var(--dRotate) - var(--rotate))); /* Rotate the label based on the clock's rotation */
+}
+
+/* Styles for the seconds hand */
+.seconds {
+  --dRotate: 0deg; /* Define a custom property for the rotation angle */
+  --dail-size: calc((var(--clock-size)/ 2) - 8px); /* Calculate the size of the seconds dial */
+  font-weight: 800;
+  font-size: 18px;
+  transform: rotate(calc( -1 * var(--dRotate))); /* Rotate the seconds dial */
+  position: absolute; /* Position absolutely within the clock container */
+  inset: 0; /* Position at the edges of the clock container */
+  margin: auto; /* Center horizontally and vertically */
+  transition: 1s linear; /* Add a transition effect for smooth movement */
+}
+
+/* Styles for the minutes hand */
+.minutes {
+  --dail-size: calc((var(--clock-size)/ 2) - 65px); /* Calculate the size of the minutes dial */
+  font-size: 16px;
+  transform: rotate(calc( -1 * var(--dRotate))); /* Rotate the minutes dial */
+  position: absolute; /* Position absolutely within the clock container */
+  inset: 0; /* Position at the edges of the clock container */
+  margin: auto; /* Center horizontally and vertically */
+  transition: 1s linear; /* Add a transition effect for smooth movement */
+}
+
+/* Styles for the stop animation class */
+.stop-anim {
+  transition: 0s linear; /* Disable transitions */
+}
+
+.stop-anim .spike:after {
+  transition: 0s linear !important; /* Disable transitions for spike labels */
+}
+
+/* Styles for the hour and minute display */
+.hour {
+  font-size: 70px; /* Set the font size for the hour display */
+  font-weight: 900; /* Set the font weight */
+  position: absolute; /* Position absolutely within the clock container */
+  left: 50%; /* Center horizontally */
+  top: 50%; /* Center vertically */
+  transform: translate(-50%, -50%); /* Center the element */
+}
+
+.minute {
+  font-size: 36px; /* Set the font size for the minute display */
+  font-weight: 900; /* Set the font weight */
+  position: absolute; /* Position absolutely within the clock container */
+  background: #1c1b1b; /* Set background color */
+  z-index: 10; /* Control stacking order */
+  right: calc(var(--clock-size)/ 4.5); /* Position to the right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
+}
+.minute:after {
+  content: ""; /* This sets the content for the pseudo-element as an empty string. */
+  position: absolute; /* Position the pseudo-element absolutely relative to its parent element. */
+  border: 2px solid #fff; /* Create a border around the pseudo-element with a 2-pixel width and white color. */
+  border-right: none; /* Remove the right border to create a triangular shape. */
+  height: 50px; /* Set the height of the pseudo-element to 50 pixels. */
+  left: -10px; /* Position the pseudo-element 10 pixels to the left of its parent element. */
+  top: 50%; /* Position the pseudo-element vertically in the middle of its parent element. */
+  border-radius: 40px 0 0 40px; /* Create a rounded border on the left side of the pseudo-element. */
+  width: calc(var(--clock-size)/ 2.75); /* Calculate the width of the pseudo-element based on a custom property. */
+  transform: translateY(-50%); /* Vertically center the pseudo-element within its parent by moving it up 50% of its own height. */
+}
+
+
+/* Animation for hour numbers */
+.hour {
+    font-size: 70px;
+    font-weight: 900;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Animation for minute numbers */
+  .minute {
+    font-size: 36px;
+    font-weight: 900;
+    position: absolute;
+    /* background: #000; */
+    z-index: 10;
+    right: calc(var(--clock-size) / 4.5);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+   /* Animation for minutes numbers */
+  .minutes{
+    font-weight: 800;
+    font-size: 16px;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+  }
+  
+  /* Animation for second numbers */
+  .seconds {
+    font-weight: 800;
+    font-size: 18px;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+  }
+  
+  /* Define a CSS animation for color blinking */
+  @keyframes colorBlink {
+    0%, 25% {
+      color: #ff0000; /* Red color */
+    }
+    25%, 50% {
+      color: #00ff00; /* Green color */
+    }
+    50%, 75% {
+      color: #0000ff; /* Blue color */
+    }
+    75%, 100% {
+      color: #ffcc00; /* Yellow color */
+    }
+  }
+  
+  /* Apply the colorBlink animation to the specific elements */
+  .hour, .minute, .seconds,.minutes {
+    animation: colorBlink 2s infinite; /* Apply the colorBlink animation */
+  }
+  
+
+  
+  
